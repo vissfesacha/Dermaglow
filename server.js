@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path =require('path');
 
 require('dotenv').config();
 
@@ -22,13 +23,20 @@ connection.once('open', () => {
 })
 
 const productsRouter = require('./routes/products');
-//const priceRouter = require('./routes/price');
-//const receiptRouter = require('./routes/receipt');
+
 
 app.use('/products', productsRouter);
-//app.use('/price', priceRouter);
-//app.use('/receipt', receiptRouter);
+
 //app.use(express.static('upload'));
+
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('my-app/build'));
+
+  app.get('*',(req, res) => {
+    res.sendFile(path.join(_dirname ,'my-app','build','index.html'));
+  });
+
+}
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
