@@ -114,7 +114,7 @@ export default class ProductsList extends Component {
 
  
    deleteProduct= (id)=> {
-    axios.delete('https://dermaglow.herokuapp.com/products/delete/'+id)
+    axios.delete('https://evening-coast-84861.herokuapp.com/products/delete/'+id)
    .then(response => {
       this.getProduct();
    }).catch(error =>{
