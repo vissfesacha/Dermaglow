@@ -9,7 +9,8 @@ const axios=require('axios');
 var ProductInformation = [];
 
 async function configureBrowser(link){
-      const browser= await puppeteer.launch({args: ['--no-sandbox']});
+      const browser= await puppeteer.launch({ args: ['--no-sandbox'] });
+      console.log("ENTRE")
       const page= await browser.newPage();
       await page.goto(link);
       return page;
