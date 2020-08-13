@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild":"cd my-app && npm install && npm run build "
-
+    "heroku-postbuild": "cd my-app && npm install && npm run build "
   },
   "author": "Sacha",
   "license": "ISC",
@@ -20,7 +19,6 @@
     "mongoose": "^5.9.27",
     "nodemon": "^2.0.4",
     "puppeteer": "^5.2.1",
-    "unirest": "^0.6.0",
-    "y-currency": "^1.0.3"
+    "puppeteer-core": "^5.2.1"
   }
 }
