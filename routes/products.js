@@ -130,6 +130,43 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
     });
 
+    router.post('/addProduct', async (req, res) => {
+       
+   
+     var price=req.body.price;
+     var quantity=req.body.quantity;
+     var COPprice2=price*3789.63;
+     var unitaryUSDvalue=price/quantity;
+     var unitaryCOPvalue2=unitaryUSDvalue*3789.63;
+ 
+     var COPprice = parseInt(COPprice2, 10);
+     var unitaryCOPvalue = parseInt(unitaryCOPvalue2, 10);
+     var sellprice=req.body.sellprice;
+     var margen=sellprice-unitaryCOPvalue;
+
+      newProduct=new Products({
+            brand:req.body.brand,
+            name:req.body.name,
+            price,
+            quantity,
+            unitaryUSDvalue,
+            COPprice,
+            unitaryCOPvalue,
+            sellprice,
+            margen
+
+
+      })
+      newProduct.save()
+      .then(() => res.json('Product added'))
+      .catch(err => res.status(400).json('Errororororo: ' + err));
+  
+ 
+    });
+
+
+
+
     router.post('/update/:id', async (req, res) => {
     
       const newPrice = await Products.findById({_id:req.params.id});
@@ -169,8 +206,6 @@ router.route('/').get((req, res) => {
       console.log("OJO",consultedpage);
 
 
-
-
       var newProduct="";
 
 
@@ -180,9 +215,9 @@ router.route('/').get((req, res) => {
     var brand=ProductInformation[2];
     var name=ProductInformation[1];
     var price=ProductInformation[0];
-    var COPprice2=price*3754.514972;
+    var COPprice2=price*3789.63;
     var unitaryUSDvalue=price/quantity;
-    var unitaryCOPvalue2=unitaryUSDvalue*3754.514972;
+    var unitaryCOPvalue2=unitaryUSDvalue*3789.63;
 
     var COPprice = parseInt(COPprice2, 10);
     var unitaryCOPvalue = parseInt(unitaryCOPvalue2, 10);

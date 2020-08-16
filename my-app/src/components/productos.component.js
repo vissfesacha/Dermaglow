@@ -7,7 +7,8 @@ import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 import '../styles/stylesheet.css';
-
+//import '../styles/main.css';
+//import '../styles/util.css';
 
 
 export default class ProductsList extends Component {
@@ -95,7 +96,7 @@ export default class ProductsList extends Component {
   }
   saveProduct= async()=> {
  //  await  axios.post('https://dermaglow.herokuapp.com/products/save',this.state.form)
-    await  axios.post('http://localhost:5000/products/save',this.state.form)
+    await  axios.post('http://localhost:5000/products/addProduct',this.state.form)
      .then(response => {
       this.modalInsertar(); 
        this.getProduct();
@@ -129,7 +130,11 @@ export default class ProductsList extends Component {
     
  }
 
+ gotofrontpage(){
 
+  window.location = '/';
+
+ }
   
 
  
@@ -138,13 +143,20 @@ export default class ProductsList extends Component {
     const {form}=this.state;
     return (
       <div class="card">
-
+          
 
       <h3 class="card-header text-center font-weight-bold text-capitalize py-4" >Dermaglow</h3>
       
-
+         
 
       <div class="card-body">
+
+
+     
+     
+       
+
+
         <div id="table" >
           <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
                 class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
@@ -254,15 +266,20 @@ export default class ProductsList extends Component {
 
 
               </Modal>
+                
 
-              <button className="btn btn-primary" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()} }>Agregar Producto</button>
+              <div align="left" >
+              <button className="login-form-btn" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()} }>Agregar Producto</button>
+              <button className="login2-form-btn" onClick={()=>{this.gotofrontpage()} }>Seguir añadiendo productos</button>
+              </div>
+              
 
            
 
-          <form action="/">
-       <input class="btn btn-warning" type="submit" value="Seguir añadiendo productos" />
-       </form>
+        
         </div>
+       
+       
       </div>
     </div>
     )

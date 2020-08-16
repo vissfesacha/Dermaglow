@@ -71,16 +71,35 @@ export default class AddProduct extends Component {
   
   }
 
-  goTolanding(e){
+  goTolanding(){
+      window.location = '/teamoisa';  
+  
+  }
+check(){
 
-    window.location = '/teamoisa';
-
+  if (this.state.Cantidad!== ""  && this.state.Link!=="") {
+    this.modalInsertar();
   }
 
+}
 
  
 
   render() {
+     let but, but2;
+      if (this.state.Link==="") {
+        but=<span class="label-input100">Link</span>;
+      }else{
+        but=<span></span>
+      }
+
+      if (this.state.Cantidad==="") {
+        but2=<span class="label-input100">Cantidad</span>;
+      }else{
+        but2=<span></span>
+      }
+
+
     return (
     
       
@@ -92,23 +111,23 @@ export default class AddProduct extends Component {
 						    DermaGlow
 					     </span>
                
-                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                <div class="wrap-input100 validate-input" >
 					    	<input type="text" required className="input100" value={this.state.Link} onChange={this.onChangeLink} />
-				    		<span class="focus-input100"></span>
-					    	<span class="label-input100">Link</span>
+                <span class="focus-input100"></span>
+					    	{but}
 					      </div>
                 
 
-                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                <div class="wrap-input100 validate-input" >
                 <input type="text" required className="input100" value={this.state.Cantidad} onChange={this.onChangeCantidad} />
 					    	<span class="focus-input100"></span>
-					     	<span class="label-input100">Cantidad</span>
+					     	{but2}
 					      </div>
 
                
 
                 <div className="form-group">
-                <input type="submit" value="Agregar producto" className=" login100-form-btn"  onClick={()=>{this.modalInsertar()}} />
+                <input type="submit" value="Agregar producto" className=" login100-form-btn"  onClick={()=>{this.check()}} />
                 </div>
 
                 <form action="/teamoisa">
