@@ -83,9 +83,8 @@ export default class ProductsList extends Component {
 
   getProduct=()=> {
     
-    
-   // axios.get('https://dermaglow.herokuapp.com/products/')
-   axios.get('http://localhost:5000/products/')
+   //axios.get('http://localhost:5000/products/') 
+    axios.get('https://dermaglow.herokuapp.com/products/')
     .then(response => {
               this.setState({ products: response.data })
     }).catch((error) => {
@@ -95,9 +94,9 @@ export default class ProductsList extends Component {
 
   }
   saveProduct= async()=> {
- //  await  axios.post('https://dermaglow.herokuapp.com/products/save',this.state.form)
-    await  axios.post('http://localhost:5000/products/addProduct',this.state.form)
-     .then(response => {
+    //await  axios.post('http://localhost:5000/products/addProduct',this.state.form)
+    await  axios.post('https://dermaglow.herokuapp.com/products/save',this.state.form)
+   .then(response => {
       this.modalInsertar(); 
        this.getProduct();
     }).catch(error =>{
@@ -107,8 +106,8 @@ export default class ProductsList extends Component {
   }
 
   updateProduct= ()=> {
-    // axios.post('https://dermaglow.herokuapp.com/products/update/'+this.state.id,this.state.form)
-    axios.post('http://localhost:5000/products/update/'+this.state.id,this.state.form)
+   // axios.post('http://localhost:5000/products/update/'+this.state.id,this.state.form)
+    axios.post('https://dermaglow.herokuapp.com/products/update/'+this.state.id,this.state.form)
        .then(response => {
        this.modalInsertar(); 
        this.getProduct();
@@ -120,9 +119,9 @@ export default class ProductsList extends Component {
 
  
    deleteProduct= (id)=> {
-    //axios.delete('https://dermaglow.herokuapp.com/products/delete/'+id)
-    axios.delete('http://localhost:5000/products/delete/'+id)
-      .then(response => {
+   // axios.delete('http://localhost:5000/products/delete/'+id)
+    axios.delete('https://dermaglow.herokuapp.com/products/delete/'+id)
+     .then(response => {
       this.getProduct();
    }).catch(error =>{
      console.log(error);
