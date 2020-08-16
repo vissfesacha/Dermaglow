@@ -1,0 +1,36 @@
+
+
+
+@font-face {
+    font-family: 'shine_personal_useregular';
+    src: url('../fonts/shine_personal_use-webfont.woff2') format('woff2'),
+         url('../fonts/shine_personal_use-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+
+    font-family: 'bratsy_script_demoreguler';
+    src: url('../fonts/bratsy_script_demo-webfont.woff2') format('woff2'),
+         url('../fonts/bratsy_script_demo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    font-family: 'oaklashregular';
+    src: url('../fonts/oaklash-webfont.woff2') format('woff2'),
+         url('../fonts/oaklash-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h3 {
+    font-family: 'oaklashregular';
+    font-size: 44.72px;
+}
+
+.table th,
+.table td {
+    padding: 0.25rem;
+  vertical-align: middle;
+  border-top: 1px solid #dee2e6;
+}
+

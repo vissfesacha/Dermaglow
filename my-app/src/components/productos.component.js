@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
+import '../styles/stylesheet.css';
 
 
 
@@ -80,8 +81,10 @@ export default class ProductsList extends Component {
   }
 
   getProduct=()=> {
-
-    axios.get('https://dermaglow.herokuapp.com/products/')
+    
+    
+   // axios.get('https://dermaglow.herokuapp.com/products/')
+   axios.get('http://localhost:5000/products/')
     .then(response => {
               this.setState({ products: response.data })
     }).catch((error) => {
@@ -91,8 +94,9 @@ export default class ProductsList extends Component {
 
   }
   saveProduct= async()=> {
-   await  axios.post('https://dermaglow.herokuapp.com/products/save',this.state.form)
-    .then(response => {
+ //  await  axios.post('https://dermaglow.herokuapp.com/products/save',this.state.form)
+    await  axios.post('http://localhost:5000/products/save',this.state.form)
+     .then(response => {
       this.modalInsertar(); 
        this.getProduct();
     }).catch(error =>{
@@ -102,8 +106,9 @@ export default class ProductsList extends Component {
   }
 
   updateProduct= ()=> {
-      axios.post('https://dermaglow.herokuapp.com/products/update/'+this.state.id,this.state.form)
-     .then(response => {
+    // axios.post('https://dermaglow.herokuapp.com/products/update/'+this.state.id,this.state.form)
+    axios.post('http://localhost:5000/products/update/'+this.state.id,this.state.form)
+       .then(response => {
        this.modalInsertar(); 
        this.getProduct();
      }).catch(error =>{
@@ -114,8 +119,9 @@ export default class ProductsList extends Component {
 
  
    deleteProduct= (id)=> {
-    axios.delete('https://dermaglow.herokuapp.com/products/delete/'+id)
-   .then(response => {
+    //axios.delete('https://dermaglow.herokuapp.com/products/delete/'+id)
+    axios.delete('http://localhost:5000/products/delete/'+id)
+      .then(response => {
       this.getProduct();
    }).catch(error =>{
      console.log(error);
@@ -134,26 +140,29 @@ export default class ProductsList extends Component {
       <div class="card">
 
 
-      <h3 class="card-header text-center font-weight-bold text-uppercase py-4">DermaGlow</h3>
+      <h3 class="card-header text-center font-weight-bold text-capitalize py-4" >Dermaglow</h3>
+      
+
+
       <div class="card-body">
-        <div id="table" class="table-editable">
+        <div id="table" >
           <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
                 class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
-          <table class="table table-bordered table-responsive-md table-striped text-center">
+          <table class="table table-sm table-bordered table-responsive-md table-striped table-hover text-center">
                
             <thead>
               
-              <tr>
-                <th data-field="Marca" data-sortable="true" data-switchable="false">Marca</th>
-                <th data-field="Nombre del producto" data-sortable="true" data-switchable="false">Nombre del producto</th>
-                <th data-field="Cantidad" data-sortable="true">Cantidad</th>
-                <th data-field="Precio(USD)" data-sortable="true">Precio(USD)</th>
-                <th data-field="Precio(COP)" data-sortable="true">Precio(COP)</th>
-                <th data-field="Valor unitario(USD)" data-sortable="true">Valor unitario(USD)</th>
-                <th data-field="Valor unitario(COP)" data-sortable="true">Valor unitario(COP)</th>
-                <th data-field="Valor de venta" data-sortable="true">Valor de venta</th>
-                <th data-field="Margen ganancia" data-sortable="true">Margen de ganancia</th>
-                <th data-field="Opciones" data-sortable="true">Opciones</th>
+            <tr>
+                <th data-field="Marca" >Marca</th>
+                <th data-field="Nombre del producto" >Nombre del producto</th>
+                <th data-field="Cantidad" >Cantidad</th>
+                <th data-field="Precio(USD)" >Precio(USD)</th>
+                <th data-field="Precio(COP)" >Precio(COP)</th>
+                <th data-field="Valor unitario(USD)">Valor unitario(USD)</th>
+                <th data-field="Valor unitario(COP)" >Valor unitario(COP)</th>
+                <th data-field="Valor de venta" >Valor de venta</th>
+                <th data-field="Margen ganancia" >Margen de ganancia</th>
+                <th data-field="Opciones" >Opciones</th>
                              
                
               </tr>
