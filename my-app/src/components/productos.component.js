@@ -95,7 +95,7 @@ export default class ProductsList extends Component {
   }
   saveProduct= async()=> {
     //await  axios.post('http://localhost:5000/products/addProduct',this.state.form)
-    await  axios.post('https://dermaglow.herokuapp.com/products/save',this.state.form)
+    await  axios.post('https://dermaglow.herokuapp.com/products/addProduct',this.state.form)
    .then(response => {
       this.modalInsertar(); 
        this.getProduct();
