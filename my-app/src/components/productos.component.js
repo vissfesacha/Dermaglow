@@ -10,6 +10,8 @@ import '../styles/stylesheet.css';
 //import '../styles/main.css';
 //import '../styles/util.css';
 
+import car from '../images/fondo11.jpeg';
+
 
 export default class ProductsList extends Component {
   constructor(props) {
@@ -141,10 +143,10 @@ export default class ProductsList extends Component {
   render() {
     const {form}=this.state;
     return (
-      <div class="card">
+      <div class="card" style ={ { backgroundImage: "url("+car+")" } }>
           
 
-      <h3 class="card-header text-center font-weight-bold text-capitalize py-4" >Dermaglow</h3>
+      <h3 class="card-header  text-center  text-capitalize py-4" >Dermaglow</h3>
       
          
 

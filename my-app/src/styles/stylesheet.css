@@ -12,7 +12,7 @@
     font-family: 'bratsy_script_demoreguler';
     src: url('../fonts/bratsy_script_demo-webfont.woff2') format('woff2'),
          url('../fonts/bratsy_script_demo-webfont.woff') format('woff');
-    font-weight: normal;
+    font-weight: 100;
     font-style: normal;
 
     font-family: 'oaklashregular';
@@ -23,8 +23,15 @@
 }
 
 h3 {
-    font-family: 'oaklashregular';
-    font-size: 44.72px;
+    font-family: 'bratsy_script_demoreguler';
+    font-size: 110px;
+    color: white;
+    
+}
+td ,th{
+  
+  color: white;
+  
 }
 
 .table th,
@@ -95,3 +102,13 @@ h3 {
    .login100-form-btn:hover {
      background: #333333;
    }
+
+   .login100-form-title {
+    width: 100%;
+    display: block;
+    font-family: bratsy_script_demoreguler;
+    font-size: 81px;
+    color: #333333;
+    line-height: 0.2;
+    text-align: center;
+  }

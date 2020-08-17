@@ -39,8 +39,26 @@
   font-family: Montserrat-Regular;
   src: url('../fonts/montserrat/Montserrat-Regular.ttf'); 
 }
+@font-face {
+ 
+
+  font-family: 'bratsy_script_demoreguler';
+  src: url('../fonts/bratsy_script_demo-webfont.woff2') format('woff2'),
+       url('../fonts/bratsy_script_demo-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 
 
+}
+@font-face {
+  font-family: 'shine_personal_useregular';
+  src: url('../fonts/shine_personal_use-webfont.woff2') format('woff2'),
+       url('../fonts/shine_personal_use-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+
+}
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
@@ -266,10 +284,10 @@ iframe {
 .login100-form-title {
   width: 100%;
   display: block;
-  font-family: Poppins-Regular;
-  font-size: 30px;
+  font-family: bratsy_script_demoreguler;
+  font-size: 91px;
   color: #333333;
-  line-height: 1.2;
+  line-height: 0.2;
   text-align: center;
 }
 
@@ -297,7 +315,7 @@ iframe {
 .label-input100 {
   font-family: Montserrat-Regular;
   font-size: 18px;
-  color: #999999;
+  color: white;
   line-height: 1.2;
 
   display: block;

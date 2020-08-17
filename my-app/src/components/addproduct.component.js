@@ -5,7 +5,9 @@ import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 import '../styles/main.css';
 import '../styles/util.css';
-import car from '../images/skincarenatural-850x567.jpg';
+//import car from '../images/skincarenatural-850x567.jpg';
+import car from '../images/fondo17.jpeg';
+import gif from '../images/equis.gif';
 
 export default class AddProduct extends Component {
   constructor(props) {
@@ -19,8 +21,8 @@ export default class AddProduct extends Component {
     this.state = {
       Link : '',
       Cantidad: '',
-      modalInsertar:false
-    
+      modalInsertar:false,
+      videoURL: '../images/equis.mp4'
     }
 
   }
@@ -103,12 +105,13 @@ check(){
     return (
     
       
-      <div class="limiter">
-        <div class="container-login100">
-          <div class="wrap-login100">
-             <form class="login100-form validate-form" onSubmit={this.onSubmit}>
+      <div class="limiter" >
+        <div class="container-login100" >
+          <div class="wrap-login100" >
+        
+             <form class="login100-form validate-form" onSubmit={this.onSubmit} style ={ { backgroundImage: "url("+car+")" } }>
                <span class="login100-form-title p-b-43">
-						    DermaGlow
+						    Dermaglow
 					     </span>
                
                 <div class="wrap-input100 validate-input" >
@@ -135,6 +138,7 @@ check(){
                 </form>
  
             </form>
+            
                 
                  <Modal isOpen ={this.state.modalInsertar}>
        
@@ -153,7 +157,7 @@ check(){
                  </Modal>
 
         
-            <div class="login100-more" style ={ { backgroundImage: "url("+car+")" } }>
+            <div class="login100-more" style ={ { backgroundImage: "url("+gif+")" } }>
             </div>
          </div>
         </div>
