@@ -99,8 +99,8 @@ export default class ProductsList extends Component {
   
 
   getProduct=()=> {
-    //axios.get('https://dermaglow.herokuapp.com/products/') 
-   axios.get('http://localhost:5000/products/') 
+   // axios.get('http://localhost:5000/products/') 
+    axios.get('https://dermaglow.herokuapp.com/products/') 
    .then(response => {
     console.log("aprendiendoooo",response.data)          
     this.setState({ products: response.data })
@@ -111,8 +111,9 @@ export default class ProductsList extends Component {
 
   }
   saveProduct= async()=> {
-    //await  axios.post('https://dermaglow.herokuapp.com/products/addProduct',this.state.form)
-    await  axios.post('http://localhost:5000/products/addProduct',this.state.form)
+   
+    //await  axios.post('http://localhost:5000/products/addProduct',this.state.form)
+    await  axios.post('https://dermaglow.herokuapp.com/products/addProduct',this.state.form)
     .then(response => {
       this.modalInsertar(); 
        this.getProduct();
@@ -123,9 +124,9 @@ export default class ProductsList extends Component {
   }
 
   updateProduct= ()=> {
-    //axios.post('https://dermaglow.herokuapp.com/products/update/'+this.state.id,this.state.form)
-     axios.post('http://localhost:5000/products/update/'+this.state.id,this.state.form)
-       .then(response => {
+    //axios.post('http://localhost:5000/products/update/'+this.state.id,this.state.form)
+     axios.post('https://dermaglow.herokuapp.com/products/update/'+this.state.id,this.state.form)
+      .then(response => {
        
         this.modalInsertar(); 
        this.getProduct();
@@ -139,7 +140,8 @@ export default class ProductsList extends Component {
    deleteProduct= (id)=> {
    
   //  axios.delete('https://dermaglow.herokuapp.com/products/delete/'+id)
-     axios.delete('http://localhost:5000/products/delete/'+id)
+    // axios.delete('http://localhost:5000/products/delete/'+id)
+     axios.delete('https://dermaglow.herokuapp.com/products/delete/'+id)
      .then(response => {
       this.getProduct();
    }).catch(error =>{
@@ -149,7 +151,8 @@ export default class ProductsList extends Component {
  }
 
  cart= (id)=> {
-  axios.post('http://localhost:5000/shoppingcar/addToCar/'+id, {cantidad: this.state.cantidad})
+  //axios.post('http://localhost:5000/shoppingcar/addToCar/'+id, {cantidad: this.state.cantidad})
+  axios.post('https://dermaglow.herokuapp.com/shoppingcar/addToCar/'+id, {cantidad: this.state.cantidad})
   .then(response => {
     this.modalCantidad("1");
     console.log("xdddddddddddddddddddddddddddddddddddd")
@@ -162,12 +165,9 @@ export default class ProductsList extends Component {
  }
 
  buy() {
-  //axios.post('http://localhost:5000/shoppingcar/buy/')
- // .then(response => {
+ 
     window.location = '/tequieroisa';
-//}).catch(error =>{
- // console.log(error);
-//})
+
 
 
  }

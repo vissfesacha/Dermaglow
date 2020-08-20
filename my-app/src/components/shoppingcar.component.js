@@ -43,7 +43,7 @@ export default class ProductsList extends Component {
   
     getProduct=()=> {
       //axios.get('https://dermaglow.herokuapp.com/products/') 
-     axios.get('http://localhost:5000/shoppingcar/') 
+     axios.get('https://dermaglow.herokuapp.com/shoppingcar/') 
      .then(response => {
                
                 this.setState({ products: response.data.productos })
@@ -56,7 +56,7 @@ export default class ProductsList extends Component {
   
     }
     getTotal=()=> {
-      axios.get('http://localhost:5000/shoppingcar/total/') 
+      axios.get('https://dermaglow.herokuapp.com/shoppingcar/total/') 
       .then(response => {
                
                  this.setState({ totalprice: response.data.price ,
@@ -74,7 +74,7 @@ export default class ProductsList extends Component {
      deleteProduct= (id)=> {
      
     //  axios.delete('https://dermaglow.herokuapp.com/products/delete/'+id)
-       axios.delete('http://localhost:5000/products/delete/'+id)
+       axios.delete('https://dermaglow.herokuapp.com/products/delete/'+id)
        .then(response => {
         this.getProduct();
      }).catch(error =>{
@@ -84,7 +84,7 @@ export default class ProductsList extends Component {
    }
   
    cart= (id)=> {
-    axios.post('http://localhost:5000/shoppingcar/addToCar/'+id)
+    axios.post('https://dermaglow.herokuapp.com/shoppingcar/addToCar/'+id)
     .then(response => {
      this.getProduct();
   }).catch(error =>{
@@ -95,7 +95,8 @@ export default class ProductsList extends Component {
    }
   
    buy() {
-    axios.post('http://localhost:5000/shoppingcar/buy/')
+     
+    axios.post('https://dermaglow.herokuapp.com/shoppingcar/buy/')
     .then(response => {
      this.getProduct();
      this.getTotal();
