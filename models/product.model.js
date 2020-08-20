@@ -20,6 +20,18 @@ const productSchema = new Schema({
   timestamps: true,
 });
 
-const Exercise = mongoose.model('Products', productSchema);
 
-module.exports = Exercise;
+
+const shoppingcarSchema = new Schema({
+ 
+  name: { type: String},
+  productos:[productSchema]
+
+  
+});
+
+const sc = mongoose.model('Shoppingcar', shoppingcarSchema);
+const pr = mongoose.model('Products', productSchema);
+
+module.exports.Product = pr;
+module.exports.Shoppingcar = sc;

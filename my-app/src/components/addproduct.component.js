@@ -60,9 +60,9 @@ export default class AddProduct extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    //axios.post('http://localhost:5000/products/add',  {
-   axios.post('https://dermaglow.herokuapp.com/products/add',  {
-    
+    //axios.post('https://dermaglow.herokuapp.com/products/add',  {
+    axios.post('http://localhost:5000/products/add',  {
+       
     url: this.state.Link,
     quantity: this.state.Cantidad
   }).then(res => console.log(res.data));

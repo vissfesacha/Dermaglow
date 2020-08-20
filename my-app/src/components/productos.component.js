@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt,faShoppingBasket, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 import '../styles/stylesheet.css';
 //import '../styles/main.css';
 //import '../styles/util.css';
 
-import car from '../images/fondo11.jpeg';
+import car from '../images/fondodos.jpg';
 
 
 export default class ProductsList extends Component {
@@ -22,6 +22,9 @@ export default class ProductsList extends Component {
     this.state = {
     products: [],
     modalInsertar:false,
+    modalCantidad:false,
+    cantidad:'',
+    idd:'',
     form:{
       brand:'',
       name:'',
@@ -47,6 +50,10 @@ export default class ProductsList extends Component {
    this.setState({modalInsertar:!this.state.modalInsertar });
     
   }
+  modalCantidad=(id)=>{
+    this.setState({modalCantidad:!this.state.modalCantidad });
+    this.setState({ idd:id });
+   }
   seleccionarProducto=(products)=>{
 
     this.setState({
@@ -82,13 +89,21 @@ export default class ProductsList extends Component {
   })
 
   }
+  onChangeCantidad= async e=>{
+    e.persist();
+    
+    await this.setState({
+      cantidad: e.target.value
+    })
+  }
+  
 
   getProduct=()=> {
-    
-   //axios.get('http://localhost:5000/products/') 
-    axios.get('https://dermaglow.herokuapp.com/products/')
-    .then(response => {
-              this.setState({ products: response.data })
+    //axios.get('https://dermaglow.herokuapp.com/products/') 
+   axios.get('http://localhost:5000/products/') 
+   .then(response => {
+    console.log("aprendiendoooo",response.data)          
+    this.setState({ products: response.data })
     }).catch((error) => {
       console.log(error);
     })
@@ -96,9 +111,9 @@ export default class ProductsList extends Component {
 
   }
   saveProduct= async()=> {
-    //await  axios.post('http://localhost:5000/products/addProduct',this.state.form)
-    await  axios.post('https://dermaglow.herokuapp.com/products/addProduct',this.state.form)
-   .then(response => {
+    //await  axios.post('https://dermaglow.herokuapp.com/products/addProduct',this.state.form)
+    await  axios.post('http://localhost:5000/products/addProduct',this.state.form)
+    .then(response => {
       this.modalInsertar(); 
        this.getProduct();
     }).catch(error =>{
@@ -108,10 +123,11 @@ export default class ProductsList extends Component {
   }
 
   updateProduct= ()=> {
-   // axios.post('http://localhost:5000/products/update/'+this.state.id,this.state.form)
-    axios.post('https://dermaglow.herokuapp.com/products/update/'+this.state.id,this.state.form)
+    //axios.post('https://dermaglow.herokuapp.com/products/update/'+this.state.id,this.state.form)
+     axios.post('http://localhost:5000/products/update/'+this.state.id,this.state.form)
        .then(response => {
-       this.modalInsertar(); 
+       
+        this.modalInsertar(); 
        this.getProduct();
      }).catch(error =>{
        console.log(error);
@@ -121,14 +137,39 @@ export default class ProductsList extends Component {
 
  
    deleteProduct= (id)=> {
-   // axios.delete('http://localhost:5000/products/delete/'+id)
-    axios.delete('https://dermaglow.herokuapp.com/products/delete/'+id)
+   
+  //  axios.delete('https://dermaglow.herokuapp.com/products/delete/'+id)
+     axios.delete('http://localhost:5000/products/delete/'+id)
      .then(response => {
       this.getProduct();
    }).catch(error =>{
      console.log(error);
    })
     
+ }
+
+ cart= (id)=> {
+  axios.post('http://localhost:5000/shoppingcar/addToCar/'+id, {cantidad: this.state.cantidad})
+  .then(response => {
+    this.modalCantidad("1");
+    console.log("xdddddddddddddddddddddddddddddddddddd")
+  
+}).catch(error =>{
+  console.log(error);
+})
+
+ 
+ }
+
+ buy() {
+  //axios.post('http://localhost:5000/shoppingcar/buy/')
+ // .then(response => {
+    window.location = '/tequieroisa';
+//}).catch(error =>{
+ // console.log(error);
+//})
+
+
  }
 
  gotofrontpage(){
@@ -143,14 +184,14 @@ export default class ProductsList extends Component {
   render() {
     const {form}=this.state;
     return (
-      <div class="card" style ={ { backgroundImage: "url("+car+")" } }>
+      <div classname="container-fluid" style ={ { backgroundImage: "url("+car+")" } }>
           
 
-      <h3 class="card-header  text-center  text-capitalize py-4" >Dermaglow</h3>
+      <h3 class="container-fluid  text-center  text-capitalize py-4" >Dermaglow</h3>
       
          
 
-      <div class="card-body">
+      <div classname="container-fluid">
 
 
      
@@ -195,9 +236,12 @@ export default class ProductsList extends Component {
                   <td>{new Intl.NumberFormat("en-EN").format(producto.margen)}</td>
                   
                   <td>
+               
+               <button className="btn btn-success" onClick={()=>{this.modalCantidad(producto._id)}}><FontAwesomeIcon icon={faShoppingCart}/></button>
                 <button className="btn btn-primary" onClick={()=>{this.seleccionarProducto(producto);this.modalInsertar()}}><FontAwesomeIcon icon={faEdit}/></button>
                 {"   "}
                 <button className="btn btn-danger" onClick={()=>{this.deleteProduct(producto._id)}}><FontAwesomeIcon icon={faTrashAlt}/></button>
+                
                 </td>
                
                   </tr>
@@ -267,13 +311,44 @@ export default class ProductsList extends Component {
 
 
               </Modal>
+
+
+
+               <Modal isOpen ={this.state.modalCantidad}>
+       
+                <ModalHeader style ={{display:'block'}}>
+              <span style={{float :'right'}}></span>
+               </ModalHeader>
+
+
+             <ModalBody>
+               
+
+               <label htmlFor="quantity">Cantidad para añadir al carrito</label>
+               <input type="text" required className="form-control" value={this.state.cantidad} onChange={this.onChangeCantidad} />
+                <br />
+             </ModalBody>
+               <ModalFooter>
+               <button className ="btn btn-success" onClick={()=>this.cart(this.state.idd,this.state.cantidad)}>
+                Guardar
+              </button>
+               <button className ="btn btn-danger" onClick={()=>this.modalCantidad()}>Cancelar</button>
+             </ModalFooter>
+
+               </Modal>
                 
+
+
+
 
               <div align="left" >
               <button className="login-form-btn" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()} }>Agregar Producto</button>
               <button className="login2-form-btn" onClick={()=>{this.gotofrontpage()} }>Seguir añadiendo productos</button>
               </div>
-              
+              <div align="right" >
+              <button className="login-form-btn" onClick={()=>{this.buy()} }>Ver carrito</button>
+             
+              </div>
 
            
 

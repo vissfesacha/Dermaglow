@@ -8,6 +8,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import ProductsList from "./components/productos.component";
 import AddProduct from "./components/addproduct.component";
+import Shoppingcar from "./components/shoppingcar.component";
 
 
 
@@ -20,6 +21,8 @@ function App() {
 
     <Route path="/" exact component={AddProduct} /> 
     <Route path="/teamoisa" exact component={ProductsList} /> 
+    <Route path="/tequieroisa" exact component={Shoppingcar} /> 
+    
     </div>
   </Router>
   );

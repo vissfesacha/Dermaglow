@@ -23,9 +23,10 @@ connection.once('open', () => {
 })
 
 const productsRouter = require('./routes/products');
-
+const shoppingcarRouter = require('./routes/shoppingcar');
 
 app.use('/products', productsRouter);
+app.use('/shoppingcar', shoppingcarRouter);
 
 //app.use(express.static('upload'));
 

@@ -119,13 +119,13 @@ async function monitor(link,consultedpage){
 
 
 router.route('/').get((req, res) => {
-    Products.find()
+    Products.Product.find()
       .then(products => res.json(products))
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
   router.delete('/delete/:id',(req, res) => {
-      Products.findByIdAndDelete(req.params.id)
+      Products.Product.findByIdAndDelete(req.params.id)
         .then(() => res.json('Product deleted.'))
         .catch(err => res.status(400).json('Error: ' + err));
     });
@@ -144,7 +144,7 @@ router.route('/').get((req, res) => {
      var sellprice=req.body.sellprice;
      var margen=sellprice-unitaryCOPvalue;
 
-      newProduct=new Products({
+      newProduct=new Products.Product({
             brand:req.body.brand,
             name:req.body.name,
             price,
@@ -169,7 +169,7 @@ router.route('/').get((req, res) => {
 
     router.post('/update/:id', async (req, res) => {
     
-      const newPrice = await Products.findById({_id:req.params.id});
+      const newPrice = await Products.Product.findById({_id:req.params.id});
       var precioCOP =req.body.COPprice;
       var precioCOPunitario=req.body.unitaryCOPvalue;
       var precioUSDunitario= req.body.unitaryUSDvalue;
@@ -186,7 +186,7 @@ router.route('/').get((req, res) => {
 
       var con=req.body.sellprice-req.body.unitaryCOPvalue;
 
-       Products.findByIdAndUpdate({_id:req.params.id},{name: req.body.name ,quantity: req.body.quantity ,price: req.body.price, brand: req.body.brand, 
+       Products.Product.findByIdAndUpdate({_id:req.params.id},{name: req.body.name ,quantity: req.body.quantity ,price: req.body.price, brand: req.body.brand, 
             COPprice: precioCOP,unitaryUSDvalue: precioUSDunitario ,unitaryCOPvalue: precioCOPunitario,margen: con,sellprice: req.body.sellprice}
             )
        .then(() => res.json('Product updated.'))
@@ -231,7 +231,7 @@ router.route('/').get((req, res) => {
 
     ProductInformation=[];
     console.log("NUEVO",ProductInformation);
-    newProduct=new Products({
+    newProduct=new Products.Product({
       brand,
      name,
      quantity,
